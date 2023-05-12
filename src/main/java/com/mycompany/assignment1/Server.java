@@ -278,7 +278,7 @@ public class Server extends JFrame implements ActionListener, Runnable {
         Then makes a fire object and adds it to the arraylist and prints fire details
         */
         if (fires.isEmpty()) {
-            FireDetails fire = new FireDetails(0, tempFire.getX_pos(), tempFire.getY_pos(), tempFire.getDroneId(), tempFire.getSeverity());
+            FireDetails fire = new FireDetails(0, tempFire.getX_pos(), tempFire.getY_pos(), tempFire.getDroneId(), tempFire.getSeverity(), 0.0);
             fires.add(fire);
             outputLog("New Fire Spotted at " + fire.getX_pos() + ", " + fire.getY_pos() + " with severity " + fire.getSeverity() + ".");
         } else {
@@ -292,7 +292,7 @@ public class Server extends JFrame implements ActionListener, Runnable {
             
             int fireId = max + 1;
             
-            FireDetails fire = new FireDetails(fireId, tempFire.getX_pos(), tempFire.getY_pos(), tempFire.getDroneId(), tempFire.getSeverity());
+            FireDetails fire = new FireDetails(fireId, tempFire.getX_pos(), tempFire.getY_pos(), tempFire.getDroneId(), tempFire.getSeverity(), 0.0);
             fires.add(fire);
             outputLog("New Fire Spotted at " + fire.getX_pos() + ", " + fire.getY_pos() + " with severity " + fire.getSeverity() + ".");
         }

@@ -23,15 +23,17 @@ public class FireDetails  implements Serializable {
     private int y_pos;
     private int droneId;
     private int severity;
+    private double burningAreaRadius;
     
     // Constructor
     
-    public FireDetails (int id, int x_pos, int y_pos, int droneId, int severity) {
+    public FireDetails (int id, int x_pos, int y_pos, int droneId, int severity, double burningAreaRadius) {
         this.id = id;
         this.x_pos = x_pos;
         this.y_pos = y_pos;
         this.droneId = droneId;
         this.severity = severity;
+        this.burningAreaRadius = burningAreaRadius;
     }
     
     // Accessors / Getters
@@ -55,6 +57,10 @@ public class FireDetails  implements Serializable {
     public int getSeverity() {
         return severity;
     }
+
+    public double getBurningAreaRadius() {
+        return burningAreaRadius;
+    }
     
     // Mutators / Setters
     
@@ -77,6 +83,10 @@ public class FireDetails  implements Serializable {
     public void setSeverity(int severity) {
         this.severity = severity;
     }
+
+    public void setBurningAreaRadius(double burningAreaRadius) {
+        this.burningAreaRadius = burningAreaRadius;
+    }
     
     public String toCSV() {
         return
@@ -84,7 +94,8 @@ public class FireDetails  implements Serializable {
                 x_pos + "," +
                 y_pos + "," +
                 droneId + "," +
-                severity;
+                severity + "," +
+                burningAreaRadius;
     }
     
     // toString() Method
@@ -95,6 +106,7 @@ public class FireDetails  implements Serializable {
                "X Position: " + x_pos + "\n" +
                "Y Position: " + y_pos + "\n" +
                "Drone Reporting: " + droneId + "\n" +
-               "Severity: " + severity + "\n";
+               "Severity: " + severity + "\n"+
+               "Burning Area Radius: " + burningAreaRadius + "\n";
     }
 }
