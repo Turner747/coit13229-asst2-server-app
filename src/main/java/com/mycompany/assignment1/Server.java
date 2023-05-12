@@ -278,7 +278,7 @@ public class Server extends JFrame implements ActionListener, Runnable {
         Then makes a fire object and adds it to the arraylist and prints fire details
         */
         if (fires.isEmpty()) {
-            FireDetails fire = new FireDetails(0, tempFire.getX_pos(), tempFire.getY_pos(), tempFire.getDroneId(), tempFire.getSeverity(), 0.0);
+            FireDetails fire = new FireDetails(0, tempFire.getX_pos(), tempFire.getY_pos(), tempFire.getDroneId(), tempFire.getSeverity(), 0.0, true);
             fires.add(fire);
             outputLog("New Fire Spotted at " + fire.getX_pos() + ", " + fire.getY_pos() + " with severity " + fire.getSeverity() + ".");
         } else {
@@ -292,7 +292,7 @@ public class Server extends JFrame implements ActionListener, Runnable {
             
             int fireId = max + 1;
             
-            FireDetails fire = new FireDetails(fireId, tempFire.getX_pos(), tempFire.getY_pos(), tempFire.getDroneId(), tempFire.getSeverity(), 0.0);
+            FireDetails fire = new FireDetails(fireId, tempFire.getX_pos(), tempFire.getY_pos(), tempFire.getDroneId(), tempFire.getSeverity(), 0.0, true);
             fires.add(fire);
             outputLog("New Fire Spotted at " + fire.getX_pos() + ", " + fire.getY_pos() + " with severity " + fire.getSeverity() + ".");
         }
@@ -340,8 +340,10 @@ public class Server extends JFrame implements ActionListener, Runnable {
                int y_pos = Integer.parseInt(data[2]);
                int droneId = Integer.parseInt(data[3]);
                int severity = Integer.parseInt(data[4]);
+               double burnArea = Double.parseDouble(data[5]);
+               boolean isActive = Integer.parseInt(data[6]) == 1;
 
-               FireDetails fire = new FireDetails(id, x_pos, y_pos, droneId, severity);
+               FireDetails fire = new FireDetails(id, x_pos, y_pos, droneId, severity, burnArea, isActive);
                fires.add(fire);
          }
         } catch (IOException e) {
@@ -369,7 +371,7 @@ public class Server extends JFrame implements ActionListener, Runnable {
             FileWriter writer = new FileWriter("fires.csv", false);
             
             // Writes heading line with column names
-            writer.write("Fire ID,X Position,Y Position,Reporting Drone ID,Severity\n");
+            writer.write("Fire ID,X Position,Y Position,Reporting Drone ID,Severity,Burn Area Radius, Active\n");
             
             for (FireDetails p : fires) {
                 writer.write(p.toCSV() + "\n");
